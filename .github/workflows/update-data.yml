@@ -1,0 +1,45 @@
+name: 🌮 Update TACO Data
+
+on:
+  schedule:
+    # 每天 UTC 00:30 (台灣時間 08:30) 和 UTC 14:30 (台灣時間 22:30) 各跑一次
+    # 美股收盤後約 1 小時自動更新
+    - cron: '30 0 * * 1-6'   # 週一到週六早上
+    - cron: '30 14 * * 1-6'  # 週一到週六晚上 (美股盤後)
+  workflow_dispatch:  # 允許手動觸發
+  push:
+    branches: [main]
+    paths: ['fetch_data.py']  # 只在腳本更新時觸發
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 🌮 Fetch TACO data
+        run: python fetch_data.py
+
+      - name: 📤 Commit & Push updated data
+        run: |
+          git config user.name "TACO Bot 🌮"
+          git config user.email "taco-bot@users.noreply.github.com"
+          git add data.json
+          # Only commit if data actually changed
+          if git diff --staged --quiet; then
+            echo "No data changes, skipping commit."
+          else
+            SCORE=$(python -c "import json; d=json.load(open('data.json')); print(d['taco_score'])")
+            SIGNAL=$(python -c "import json; d=json.load(open('data.json')); print(d['signal']['zh'])")
+            git commit -m "🌮 TACO ${SCORE} — ${SIGNAL} ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
