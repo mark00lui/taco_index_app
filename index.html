@@ -3,461 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌮 TACO 壓力指數 — 即時儀表板</title>
-<meta name="description" content="TACO Stress Index：Treasury · Anxiety · Credit · Outflow 四大市場壓力維度，精準定位股市抄底時機">
-<meta property="og:title" content="🌮 TACO 壓力指數 — 即時儀表板">
+<title>🌮 TACO 壓力指數</title>
+<meta name="description" content="TACO Stress Index — Treasury · Anxiety · Credit · Outflow 四大市場壓力維度，精準定位股市抄底時機。數據每日自動更新。">
+<meta property="og:title" content="🌮 TACO 壓力指數 — 即時">
 <meta property="og:description" content="四大市場壓力維度，精準定位股市抄底時機">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌮</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0B0D12;
-    --card: rgba(255,255,255,0.035);
-    --border: rgba(255,255,255,0.07);
-    --text: #E8E6E3;
-    --muted: rgba(255,255,255,0.4);
-    --dim: rgba(255,255,255,0.25);
-    --red: #E8594F;
-    --orange: #F5A623;
-    --purple: #7B61FF;
-    --green: #2ECDA7;
-    --blue: #4A90D9;
-    --darkred: #C0392B;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg); color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 780px; margin: 0 auto; padding: 28px 16px; position: relative; }
+:root{--bg:#0B0D12;--card:rgba(255,255,255,0.035);--border:rgba(255,255,255,0.07);--text:#E8E6E3;--muted:rgba(255,255,255,0.4);--dim:rgba(255,255,255,0.25);--red:#E8594F;--orange:#F5A623;--purple:#7B61FF;--green:#2ECDA7;--blue:#4A90D9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:28px 16px;position:relative}
 
-  /* Animations */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
-  @keyframes scaleIn { from { opacity:0; transform:scale(0.6); } to { opacity:1; transform:scale(1); } }
-  .fade-up { animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both; }
-  .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.35s; }
-  .d4 { animation-delay: 0.5s; } .d5 { animation-delay: 0.65s; } .d6 { animation-delay: 0.8s; }
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes shimmer{0%{background-position:-300% 0}100%{background-position:300% 0}}
+.fu{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.4s}.d5{animation-delay:.55s}.d6{animation-delay:.7s}
 
-  /* Header */
-  .header { text-align: center; margin-bottom: 28px; }
-  .header .taco-icon { font-size: 52px; animation: scaleIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
-  .header h1 {
-    font-size: 30px; font-weight: 900; font-family: 'Outfit', sans-serif;
-    background: linear-gradient(135deg, var(--red), var(--orange), var(--purple), var(--green));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px; margin: 4px 0;
-  }
-  .header .sub { font-size: 12px; color: var(--dim); }
-  .live-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 10px; padding: 5px 14px; border-radius: 20px;
-    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-    font-size: 11px; color: var(--muted);
-  }
-  .live-dot { width:6px; height:6px; border-radius:50%; background: var(--green); animation: pulse 2s infinite; }
+.header{text-align:center;margin-bottom:24px}
+.header .ico{font-size:48px;display:block;margin-bottom:2px}
+.header h1{font-size:28px;font-weight:900;font-family:'Outfit',sans-serif;background:linear-gradient(135deg,var(--red),var(--orange),var(--purple),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.5px}
+.header .sub{font-size:12px;color:var(--dim);margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:4px 14px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:11px;color:var(--muted)}
+.dot{width:6px;height:6px;border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+.dot.ok{background:var(--green)}.dot.warn{background:var(--orange)}.dot.err{background:var(--red)}
 
-  /* Ticker */
-  .ticker { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
-  .tick {
-    padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 600;
-  }
-  .tick-red { background: rgba(232,89,79,0.08); border: 1px solid rgba(232,89,79,0.15); color: var(--red); }
-  .tick-orange { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.15); color: var(--orange); }
-  .tick-purple { background: rgba(123,97,255,0.08); border: 1px solid rgba(123,97,255,0.15); color: var(--purple); }
+.ticker{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+.tk{padding:7px 14px;border-radius:10px;font-size:12px;font-weight:600}
+.tk-r{background:rgba(232,89,79,.07);border:1px solid rgba(232,89,79,.12);color:var(--red)}
+.tk-o{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.12);color:var(--orange)}
+.tk-p{background:rgba(123,97,255,.07);border:1px solid rgba(123,97,255,.12);color:var(--purple)}
+.tk-g{background:rgba(46,205,167,.07);border:1px solid rgba(46,205,167,.12);color:var(--green)}
 
-  /* Event banner */
-  .event-banner {
-    background: rgba(245,166,35,0.06); border: 1px solid rgba(245,166,35,0.12);
-    border-radius: 10px; padding: 10px 16px; margin-bottom: 20px;
-    font-size: 12px; color: var(--muted); text-align: center; line-height: 1.6;
-  }
+.gc{background:var(--card);border-radius:20px;border:1px solid var(--border);padding:24px 20px 18px;margin-bottom:18px;text-align:center}
+.gc svg{display:block;margin:0 auto}
+.sl{font-size:18px;font-weight:800;font-family:'Outfit';margin-top:2px}
+.se{font-size:26px;margin-top:2px}
+.sd{font-size:13px;color:var(--muted);margin-top:6px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.6}
 
-  /* Gauge card */
-  .gauge-card {
-    background: var(--card); border-radius: 20px; border: 1px solid var(--border);
-    padding: 28px 20px 20px; margin-bottom: 20px; text-align: center;
-  }
-  .gauge-card svg { display: block; margin: 0 auto; }
-  .signal-label { font-size: 20px; font-weight: 800; font-family: 'Outfit'; margin-top: 2px; }
-  .signal-emoji { font-size: 28px; margin-top: 4px; }
-  .signal-desc { font-size: 13px; color: var(--muted); margin-top: 8px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;margin-bottom:16px}
+.dc{background:var(--card);border-radius:14px;padding:16px 18px;border:1px solid var(--border);position:relative;overflow:hidden}
+.dc .tb{position:absolute;top:0;left:0;height:3px;border-radius:3px 3px 0 0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.dc .hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.dc .ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.dc .lt{font-size:22px;font-weight:900;font-family:'Outfit'}
+.dc .nm{font-size:13px;font-weight:700}
+.dc .ds{font-size:11px;color:var(--muted)}
+.dc .vl{font-size:24px;font-weight:800;font-family:'Outfit';text-align:right;flex-shrink:0}
+.dc .dt{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:8px;line-height:1.5}
+.dc .ft{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+.sb{padding:3px 9px;border-radius:6px;font-size:11px;font-weight:700}
+.sr{font-size:9px;color:var(--dim)}
 
-  /* Data cards grid */
-  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; margin-bottom: 18px; }
-  .data-card {
-    background: var(--card); border-radius: 14px; padding: 18px 20px;
-    border: 1px solid var(--border); position: relative; overflow: hidden;
-  }
-  .data-card .top-bar {
-    position: absolute; top: 0; left: 0; height: 3px; border-radius: 3px 3px 0 0;
-    transition: width 1.5s cubic-bezier(0.22,1,0.36,1);
-  }
-  .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-  .card-icon {
-    width: 42px; height: 42px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; flex-shrink: 0;
-  }
-  .card-letter { font-size: 24px; font-weight: 900; font-family: 'Outfit'; }
-  .card-zh { font-size: 14px; font-weight: 700; }
-  .card-desc { font-size: 11px; color: var(--muted); }
-  .card-val { font-size: 26px; font-weight: 800; font-family: 'Outfit'; text-align: right; flex-shrink: 0; }
-  .card-detail { font-size: 11px; color: var(--muted); font-style: italic; margin-bottom: 10px; line-height: 1.5; }
-  .card-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-  .score-badge { padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; }
-  .card-source { font-size: 9px; color: var(--dim); }
+.cc{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:14px 18px}
+.cb{display:flex;border-radius:8px;overflow:hidden;height:24px;margin-bottom:8px}
+.cs{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;transition:width .8s ease}
+.cl{display:flex;gap:12px;flex-wrap:wrap}
 
-  /* Composition bar */
-  .comp-card { background: var(--card); border-radius: 14px; border: 1px solid var(--border); padding: 16px 20px; }
-  .comp-bar { display: flex; border-radius: 8px; overflow: hidden; height: 26px; margin-bottom: 10px; }
-  .comp-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; transition: width 0.8s ease; }
-  .comp-legend { display: flex; gap: 14px; flex-wrap: wrap; }
-  .comp-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.ac{border-radius:14px;padding:16px 20px;margin-top:14px}
+.ai{display:flex;align-items:center;gap:10px;font-size:13px;margin-bottom:7px}
 
-  /* Action plan */
-  .action-card { border-radius: 14px; padding: 18px 22px; margin-top: 16px; }
-  .action-item { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-bottom: 8px; }
+.hg{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}
+.hc{border-radius:10px;padding:10px 12px;position:relative;overflow:hidden}
+.ht{position:absolute;top:5px;right:7px;font-size:7px;font-weight:700;color:var(--orange);background:rgba(245,166,35,.15);padding:2px 5px;border-radius:4px}
 
-  /* Historical */
-  .hist-section { margin-top: 20px; }
-  .hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
-  .hist-card { border-radius: 10px; padding: 12px 14px; position: relative; overflow: hidden; }
-  .hist-closest {
-    position: absolute; top: 6px; right: 8px;
-    font-size: 8px; font-weight: 700; color: var(--orange);
-    background: rgba(245,166,35,0.15); padding: 2px 6px; border-radius: 4px;
-  }
+.fc{margin-top:20px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:14px 18px}
+.ft2{text-align:center;margin-top:24px;font-size:10px;color:rgba(255,255,255,.18);line-height:1.8}
 
-  /* Formula */
-  .formula-card {
-    margin-top: 24px; background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px 20px;
-  }
+.skel{border-radius:8px;height:20px;background:linear-gradient(90deg,rgba(255,255,255,.02) 25%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.02) 75%);background-size:300% 100%;animation:shimmer 1.8s infinite}
 
-  /* Footer */
-  .footer { text-align: center; margin-top: 28px; font-size: 10px; color: rgba(255,255,255,0.2); line-height: 1.8; }
-
-  /* Deploy banner */
-  .deploy-banner {
-    margin-top: 24px; background: rgba(46,205,167,0.06); border: 1px solid rgba(46,205,167,0.15);
-    border-radius: 12px; padding: 16px 20px;
-  }
-  .deploy-banner h3 { font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
-  .deploy-banner p { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 6px; }
-  .deploy-banner code {
-    display: block; background: rgba(0,0,0,0.3); border-radius: 8px;
-    padding: 12px 16px; font-family: 'Fira Code', monospace; font-size: 11px;
-    color: var(--green); margin: 8px 0; overflow-x: auto; white-space: pre;
-  }
-  .deploy-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-  .deploy-num {
-    width: 22px; height: 22px; border-radius: 50%; background: var(--green);
-    color: var(--bg); font-size: 11px; font-weight: 800;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
-  }
+.err-box{text-align:center;padding:40px 20px;color:var(--muted)}
+.err-box .emoji{font-size:40px;margin-bottom:12px}
+.err-box p{font-size:13px;line-height:1.7}
+.err-box a{color:var(--green)}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <!-- Header -->
-  <div class="header fade-up">
-    <div class="taco-icon">🌮</div>
-    <h1>TACO 壓力指數 — 即時</h1>
+  <div class="header fu">
+    <span class="ico">🌮</span>
+    <h1>TACO 壓力指數</h1>
     <p class="sub"><b>T</b>reasury · <b>A</b>nxiety · <b>C</b>redit · <b>O</b>utflow</p>
-    <div class="live-badge"><span class="live-dot"></span> 資料更新至 <span id="dateStr"></span></div>
+    <div class="badge"><span class="dot warn" id="dot"></span><span id="status">正在載入數據...</span></div>
   </div>
-
-  <!-- Ticker -->
-  <div class="ticker fade-up d1">
-    <div class="tick tick-red">S&P 500: 6,477 (-1.74%)</div>
-    <div class="tick tick-orange">Brent 原油: $108+</div>
-    <div class="tick tick-purple">VIX: 27.44</div>
-  </div>
-
-  <!-- Event -->
-  <div class="event-banner fade-up d2">
-    ⚡ <b style="color:var(--orange)">當前環境：</b>美伊衝突 · 油價飆漲 · 通膨頑固 · Fed 按兵不動<br>
-    <span style="font-size:11px;color:var(--dim)">S&P 500 連續第 4 週下跌，年初至今 -5.1%</span>
-  </div>
-
-  <!-- Gauge -->
-  <div class="gauge-card fade-up d3" id="gaugeCard"></div>
-
-  <!-- Data Cards -->
-  <div class="cards-grid fade-up d4" id="cardsGrid"></div>
-
-  <!-- Composition -->
-  <div class="comp-card fade-up d5" id="compCard"></div>
-
-  <!-- Action -->
-  <div id="actionCard" class="fade-up d5"></div>
-
-  <!-- Historical -->
-  <div class="hist-section fade-up d6" id="histSection"></div>
-
-  <!-- Formula -->
-  <div class="formula-card fade-up d6">
-    <div style="font-size:13px;font-weight:700;margin-bottom:8px;">📖 計算公式</div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.8;">
+  <div id="ticker" class="ticker fu d1"></div>
+  <div id="gauge" class="gc fu d2"><div style="padding:50px"><div class="skel" style="width:60%;margin:0 auto"></div><div class="skel" style="width:40%;margin:12px auto 0"></div></div></div>
+  <div id="cards" class="cg fu d3"></div>
+  <div id="comp" class="cc fu d4"></div>
+  <div id="action" class="fu d5"></div>
+  <div id="hist" class="fu d5" style="margin-top:18px"></div>
+  <div class="fc fu d6">
+    <div style="font-size:13px;font-weight:700;margin-bottom:6px">📖 計算方式</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.8">
       <p><b style="color:var(--text)">TACO = T×25% + A×30% + C×25% + O×20%</b></p>
-      <p>各指標原始數值通過分段線性映射轉換為 0-100 壓力分數，再按權重加總。VIX（恐慌指數）佔最高權重 30%，因其歷史上與抄底時機的相關性最強。</p>
-      <p style="color:var(--orange);margin-top:4px;">⚠️ 此為教育用途的量化框架，實際投資請結合個人風險承受度與專業顧問建議。過去績效不代表未來表現。</p>
+      <p><b style="color:var(--red)">T</b> 10Y-2Y 國債利差 (Treasury.gov) · <b style="color:var(--orange)">A</b> VIX 恐慌指數 (Yahoo Finance) · <b style="color:var(--purple)">C</b> 高收益債信用利差 (HYG ETF proxy) · <b style="color:var(--green)">O</b> 金融壓力合成指標 (VIX term structure + SPY drawdown)</p>
+      <p>數據由 GitHub Actions 每日自動抓取，全部使用免費公開數據源，零 API Key。</p>
+      <p style="color:var(--orange);margin-top:4px">⚠️ 教育用途量化框架，不構成投資建議。實際投資請結合自身風險承受度。</p>
     </div>
   </div>
-
-  <!-- Deploy Guide -->
-  <div class="deploy-banner fade-up d6">
-    <h3>🚀 如何部署這個儀表板</h3>
-
-    <div class="deploy-step">
-      <div class="deploy-num">1</div>
-      <div>
-        <p><b style="color:var(--text)">Vercel（推薦・最簡單）</b></p>
-        <p>到 <a href="https://vercel.com" style="color:var(--green)">vercel.com</a> 註冊，把這個 HTML 檔放進 GitHub repo，點 Import → 自動部署。完成後你會得到一個 <b>https://你的名字.vercel.app</b> 的免費網址。</p>
-      </div>
-    </div>
-
-    <div class="deploy-step">
-      <div class="deploy-num">2</div>
-      <div>
-        <p><b style="color:var(--text)">Netlify Drop（拖拉即部署）</b></p>
-        <p>到 <a href="https://app.netlify.com/drop" style="color:var(--green)">app.netlify.com/drop</a>，直接把這個 HTML 檔案拖進去，10 秒即上線。</p>
-      </div>
-    </div>
-
-    <div class="deploy-step">
-      <div class="deploy-num">3</div>
-      <div>
-        <p><b style="color:var(--text)">GitHub Pages（免費）</b></p>
-        <p>建一個 repo → 放入此檔並命名為 <code style="display:inline;padding:2px 6px;margin:0;">index.html</code> → Settings → Pages → Deploy from main branch。</p>
-      </div>
-    </div>
-
-    <p style="font-size:11px;color:var(--dim);margin-top:8px;">💡 若要定期更新數據，可搭配 GitHub Actions 定時抓取 FRED API 數據並自動更新此頁面。</p>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    TACO Stress Index v2.0 · 資料來源：FRED, CBOE, ICE BofA, LSEG Lipper<br>
-    投資有風險，入市需謹慎 🌮
-  </div>
-
+  <div class="ft2">TACO Stress Index v3.0 · 自動更新 · 零 API Key · <a href="https://github.com" style="color:var(--green);text-decoration:none">GitHub</a> 開源<br>投資有風險，入市需謹慎 🌮</div>
 </div>
 
 <script>
-// ====== DATA ======
-const LIVE = {
-  T: { value: 46, raw: "+0.46%", source: "FRED (10Y-2Y)", asOf: "2026-03-24" },
-  A: { value: 27.44, raw: "27.44", source: "CBOE VIX", asOf: "2026-03-26" },
-  C: { value: 319, raw: "3.19%", source: "ICE BofA HY OAS", asOf: "2026-03-24" },
-  O: { value: 48, raw: "$24.78B 週淨流出", source: "LSEG Lipper", asOf: "2026-03-18 週" },
+const META={
+  T:{zh:"國債利差",desc:"10Y-2Y 殖利率利差",icon:"📉",color:"#E8594F",w:.25,
+     th:[[-100,100],[-50,80],[0,60],[50,40],[150,20],[300,0]],
+     detail:v=>(v=parseFloat(v),v<0?"殖利率曲線倒掛 — 衰退警訊":v<0.3?"利差縮窄，接近警戒":"利差正常，前景穩定")},
+  A:{zh:"恐慌指數",desc:"VIX 波動率指數",icon:"😱",color:"#F5A623",w:.30,
+     th:[[10,0],[20,20],[30,50],[40,70],[50,85],[80,100]],
+     detail:v=>(v=parseFloat(v),v>=40?"極度恐慌 — 歷史級抄底區":v>=30?"市場恐慌 — 接近抄底":v>=20?"波動偏高":"市場平靜")},
+  C:{zh:"信用利差",desc:"高收益債 OAS 利差",icon:"💳",color:"#7B61FF",w:.25,
+     th:[[100,0],[300,20],[500,50],[700,70],[900,85],[1200,100]],
+     detail:v=>(v=parseFloat(v),v>7?"信用崩潰":v>5?"信用壓力升高":v>3.5?"利差偏高":"信用正常")},
+  O:{zh:"金融壓力",desc:"合成壓力指標",icon:"💸",color:"#2ECDA7",w:.20,
+     th:[[0,0],[20,20],[40,40],[60,60],[80,80],[100,100]],
+     detail:v=>(v=parseFloat(v),v>70?"投降式拋售":v>50?"壓力顯著升高":v>30?"壓力高於均值":"市場穩定")},
 };
+const COLORS={T:"#E8594F",A:"#F5A623",C:"#7B61FF",O:"#2ECDA7"};
+const ZONES=[{s:0,e:.3,c:"#4A90D9"},{s:.3,e:.5,c:"#2ECDA7"},{s:.5,e:.7,c:"#F5A623"},{s:.7,e:.85,c:"#E8594F"},{s:.85,e:1,c:"#C0392B"}];
 
-const COMPS = [
-  { key:"T", zh:"國債利差", desc:"10Y-2Y 國債殖利率利差", detail:"利差為正代表曲線正常；倒掛則為衰退領先指標", unit:"bps",
-    thresholds:[{v:-100,s:100},{v:-50,s:80},{v:0,s:60},{v:50,s:40},{v:150,s:20},{v:300,s:0}],
-    color:"#E8594F", icon:"📉", weight:0.25 },
-  { key:"A", zh:"恐慌指數", desc:"VIX 波動率指數", detail:"VIX > 30 歷史上常為年度級抄底機會，本月已觸及 35.30", unit:"",
-    thresholds:[{v:10,s:0},{v:20,s:20},{v:30,s:50},{v:40,s:70},{v:50,s:85},{v:80,s:100}],
-    color:"#F5A623", icon:"😱", weight:0.30 },
-  { key:"C", zh:"信用利差", desc:"高收益債 OAS 利差", detail:"利差擴大代表企業融資壓力升高，當前水準仍在正常範圍", unit:"bps",
-    thresholds:[{v:100,s:0},{v:300,s:20},{v:500,s:50},{v:700,s:70},{v:900,s:85},{v:1200,s:100}],
-    color:"#7B61FF", icon:"💳", weight:0.25 },
-  { key:"O", zh:"資金外流壓力", desc:"股票型基金淨流出強度", detail:"連續 3 週淨流出，大型股單週流出 $361 億為半年最高", unit:"%",
-    thresholds:[{v:0,s:0},{v:20,s:15},{v:40,s:35},{v:60,s:60},{v:80,s:85},{v:100,s:100}],
-    color:"#2ECDA7", icon:"💸", weight:0.20 },
-];
+function interp(v,th){if(v<=th[0][0])return th[0][1];if(v>=th[th.length-1][0])return th[th.length-1][1];for(let i=0;i<th.length-1;i++){const[v1,s1]=th[i],[v2,s2]=th[i+1];if(v>=v1&&v<=v2){return s1+(v-v1)/(v2-v1)*(s2-s1)}}return 50}
+function sig(s){if(s>=85)return{t:"🌮🌮🌮 全力抄底",zh:"TACO 爆辣模式",d:"歷史級壓力，勇者分批建倉",c:"#E8594F",bg:"rgba(232,89,79,.12)"};if(s>=70)return{t:"🌮🌮 積極佈局",zh:"TACO 重辣模式",d:"壓力升高，可分批進場",c:"#F5A623",bg:"rgba(245,166,35,.12)"};if(s>=50)return{t:"🌮 觀察等待",zh:"TACO 微辣模式",d:"壓力浮現，小量試水",c:"#7B61FF",bg:"rgba(123,97,255,.12)"};if(s>=30)return{t:"😐 中性偏空",zh:"TACO 原味模式",d:"壓力一般，維持觀察、準備資金",c:"#2ECDA7",bg:"rgba(46,205,167,.12)"};return{t:"🧊 市場過熱",zh:"TACO 冰鎮模式",d:"市場過度樂觀，注意風險",c:"#4A90D9",bg:"rgba(74,144,217,.12)"}}
 
-function interp(val, th) {
-  if (val <= th[0].v) return th[0].s;
-  if (val >= th[th.length-1].v) return th[th.length-1].s;
-  for (let i=0; i<th.length-1; i++) {
-    if (val >= th[i].v && val <= th[i+1].v) {
-      const r = (val-th[i].v)/(th[i+1].v-th[i].v);
-      return th[i].s + r*(th[i+1].s-th[i].s);
-    }
+async function init(){
+  try{
+    const res=await fetch("data.json?t="+Date.now());
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const D=await res.json();
+    document.getElementById("dot").className="dot ok";
+    const updated=D.updated_at?new Date(D.updated_at).toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):"";
+    document.getElementById("status").textContent="即時數據"+(updated?" · 更新 "+updated:"");
+    render(D);
+  }catch(e){
+    console.error(e);
+    document.getElementById("dot").className="dot err";
+    document.getElementById("status").textContent="無法載入數據";
+    document.getElementById("gauge").innerHTML='<div class="err-box"><div class="emoji">🌮❌</div><p>找不到 <code>data.json</code>，請確認：<br>1. 已執行 <code>python fetch_data.py</code> 產生數據<br>2. 或 GitHub Actions 已成功運行<br><br>詳見 <a href="https://github.com">README</a></p></div>';
   }
-  return 50;
 }
 
-function getSignal(s) {
-  if (s>=85) return {text:"🌮🌮🌮 全力抄底",zh:"TACO 爆辣模式",desc:"歷史級壓力，勇者分批大膽建倉",color:"#E8594F",bg:"rgba(232,89,79,0.12)"};
-  if (s>=70) return {text:"🌮🌮 積極佈局",zh:"TACO 重辣模式",desc:"壓力明顯升高，可開始分批進場",color:"#F5A623",bg:"rgba(245,166,35,0.12)"};
-  if (s>=50) return {text:"🌮 觀察等待",zh:"TACO 微辣模式",desc:"壓力浮現但尚未到極端，小量試水",color:"#7B61FF",bg:"rgba(123,97,255,0.12)"};
-  if (s>=30) return {text:"😐 中性偏空",zh:"TACO 原味模式",desc:"壓力一般，維持觀察、準備資金",color:"#2ECDA7",bg:"rgba(46,205,167,0.12)"};
-  return {text:"🧊 市場過熱",zh:"TACO 冰鎮模式",desc:"市場過度樂觀，注意風險、減碼觀望",color:"#4A90D9",bg:"rgba(74,144,217,0.12)"};
+function render(D){
+  const sc=D.scores,co=D.components,total=D.taco_score,s=sig(total);
+
+  // Ticker
+  document.getElementById("ticker").innerHTML=`
+    <div class="tk tk-r">10Y-2Y: ${co.T.display}</div>
+    <div class="tk tk-o">VIX: ${co.A.display}</div>
+    <div class="tk tk-p">HY Spread: ${co.C.display}</div>
+    <div class="tk tk-g">壓力: ${co.O.display}</div>`;
+
+  // Gauge
+  renderGauge(total,s);
+
+  // Cards
+  document.getElementById("cards").innerHTML=["T","A","C","O"].map(k=>{
+    const m=META[k],c=co[k],score=sc[k],bw=Math.max(score,2);
+    const bc=score>50?"var(--red)":score>30?"var(--orange)":"var(--green)";
+    const bb=score>50?"rgba(232,89,79,.1)":score>30?"rgba(245,166,35,.1)":"rgba(46,205,167,.1)";
+    return`<div class="dc"><div class="tb" style="width:${bw}%;background:linear-gradient(90deg,${m.color}80,${m.color})"></div>
+    <div class="hd"><div style="display:flex;align-items:center;gap:9px"><span class="ic" style="background:${m.color}12">${m.icon}</span><div><div style="display:flex;align-items:center;gap:5px"><span class="lt" style="color:${m.color}">${k}</span><span class="nm">${m.zh}</span></div><div class="ds">${m.desc}</div></div></div><div class="vl" style="color:${m.color}">${c.display}</div></div>
+    <div class="dt">${m.detail(c.value)}</div>
+    <div class="ft"><div style="display:flex;align-items:center;gap:6px"><span class="sb" style="color:${bc};background:${bb}">壓力分: ${Math.round(score)}</span><span style="font-size:10px;color:var(--dim)">×${m.w*100}%</span></div><span class="sr">${c.source} · ${c.date||""}</span></div></div>`;
+  }).join("");
+
+  // Composition
+  const el=document.getElementById("comp");
+  el.innerHTML=`<div style="font-size:12px;font-weight:700;margin-bottom:8px">📐 壓力組成</div>
+    <div class="cb">${["T","A","C","O"].map(k=>{const w=total>0?Math.max(sc[k]*META[k].w/total*100,2):25;return`<div class="cs" style="width:${w}%;background:${META[k].color}">${w>12?k+" "+Math.round(sc[k]):""}</div>`}).join("")}</div>
+    <div class="cl">${["T","A","C","O"].map(k=>`<div style="display:flex;align-items:center;gap:4px;font-size:11px"><div style="width:7px;height:7px;border-radius:2px;background:${META[k].color};flex-shrink:0"></div><span style="color:var(--muted)">${k} ${META[k].zh}: <b style="color:${META[k].color}">${Math.round(sc[k])}</b></span></div>`).join("")}</div>`;
+
+  // Action
+  let plans;
+  if(total>=85)plans=[["💰","分 3-5 批，每批 15-25% 資金"],["📊","優先權值股 / 寬基 ETF"],["🛡️","停損 -8~12%"],["📅","持有 6-18 月"]];
+  else if(total>=70)plans=[["💰","分 3 批，每批 10-15%"],["📊","ETF 60% + 個股 40%"],["🛡️","停損 -5~8%"],["👀","觀察壓力是否攀升"]];
+  else if(total>=50)plans=[["💰","5-10% 資金試水"],["📊","以 ETF 為主"],["🛡️","停損 -3~5%"],["⏳","等 TACO > 70 再加碼"]];
+  else if(total>=30)plans=[["✋","維持現有部位"],["📡","持續監控指標"],["🏦","準備抄底資金"]];
+  else plans=[["⚠️","市場過熱，考慮減碼"],["💵","現金部位 30-50%"],["🎯","獲利了結漲多部位"]];
+  document.getElementById("action").innerHTML=`<div class="ac" style="background:${s.bg};border:1.5px solid ${s.c}30"><h3 style="font-size:13px;font-weight:700;color:${s.c};margin-bottom:12px">🎯 操作建議</h3>${plans.map(p=>`<div class="ai"><span style="font-size:15px">${p[0]}</span>${p[1]}</div>`).join("")}</div>`;
+
+  // Historical
+  const evts=[{y:"2008",n:"金融海嘯",t:95,r:"+68%",i:"🏦"},{y:"2020",n:"COVID",t:92,r:"+75%",i:"🦠"},{y:"2011",n:"歐債危機",t:78,r:"+32%",i:"🇪🇺"},{y:"2022",n:"通膨風暴",t:74,r:"+26%",i:"🔥"},{y:"2018",n:"Fed升息",t:72,r:"+37%",i:"📈"},{y:"2015",n:"人民幣貶值",t:62,r:"+20%",i:"🇨🇳"}];
+  const closest=evts.reduce((a,b)=>Math.abs(b.t-total)<Math.abs(a.t-total)?b:a);
+  document.getElementById("hist").innerHTML=`<div style="font-size:13px;font-weight:700;margin-bottom:4px">📚 歷史對照</div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5">TACO <b>${Math.round(total)}</b> 最接近 <b style="color:var(--orange)">${closest.y} ${closest.n}</b>（TACO ${closest.t}），底部後 S&P 500 <b style="color:var(--green)">${closest.r}</b></p>
+  <div class="hg">${evts.map(e=>{const ic=e===closest;return`<div class="hc" style="background:${ic?"rgba(245,166,35,.08)":"rgba(255,255,255,.025)"};border:${ic?"1.5px solid rgba(245,166,35,.3)":"1px solid var(--border)"}">
+  ${ic?'<div class="ht">最接近</div>':""}<div style="font-size:18px;margin-bottom:3px">${e.i}</div><div style="font-size:10px;color:var(--muted)">${e.y}</div><div style="font-size:12px;font-weight:700">${e.n}</div><div style="font-size:10px;color:var(--red);font-weight:600;margin-top:3px">TACO ${e.t}</div><div style="font-size:10px;color:var(--green);font-weight:600">底部後 ${e.r}</div></div>`}).join("")}</div>`;
 }
 
-// ====== COMPUTE ======
-const scores = COMPS.map(c => ({ ...c, score: interp(LIVE[c.key].value, c.thresholds) }));
-const total = scores.reduce((s,c) => s + c.score * c.weight, 0);
-const signal = getSignal(total);
+function renderGauge(total,s){
+  const W=270,r=W/2-20,cx=W/2,cy=W/2+8,sA=Math.PI;
+  const arc=(a1,a2,R)=>{const x1=cx+R*Math.cos(a1),y1=cy-R*Math.sin(a1),x2=cx+R*Math.cos(a2),y2=cy-R*Math.sin(a2);return`M${x1} ${y1}A${R} ${R} 0 ${a1-a2>Math.PI?1:0} 0 ${x2} ${y2}`};
+  let svg=`<svg width="${W}" height="${W/2+44}" viewBox="0 0 ${W} ${W/2+44}"><defs>${ZONES.map((z,i)=>`<linearGradient id="z${i}"><stop offset="0%" stop-color="${z.c}" stop-opacity=".55"/><stop offset="100%" stop-color="${z.c}"/></linearGradient>`).join("")}<filter id="gl"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="ns"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity=".3"/></filter></defs>`;
+  svg+=`<path d="${arc(sA,0,r)}" fill="none" stroke="rgba(128,128,128,.1)" stroke-width="18" stroke-linecap="round"/>`;
+  ZONES.forEach((z,i)=>svg+=`<path d="${arc(sA-z.s*Math.PI,sA-z.e*Math.PI,r)}" fill="none" stroke="url(#z${i})" stroke-width="18" stroke-linecap="round"/>`);
+  svg+=`<line id="ndl" x1="${cx}" y1="${cy}" x2="${cx-r+14}" y2="${cy}" stroke="${s.c}" stroke-width="3" stroke-linecap="round" filter="url(#ns)"/>`;
+  svg+=`<circle cx="${cx}" cy="${cy}" r="8" fill="${s.c}" filter="url(#gl)"/><circle cx="${cx}" cy="${cy}" r="4" fill="#fff"/>`;
+  svg+=`<text id="stx" x="${cx}" y="${cy+30}" text-anchor="middle" font-size="34" font-weight="800" fill="${s.c}" font-family="Outfit,sans-serif">0</text>`;
+  [0,25,50,75,100].forEach(t=>{const a=sA-t/100*Math.PI;svg+=`<text x="${cx+(r+14)*Math.cos(a)}" y="${cy-(r+14)*Math.sin(a)}" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="DM Sans">${t}</text>`});
+  svg+=`</svg>`;
+  document.getElementById("gauge").innerHTML=svg+`<div class="sl" style="color:${s.c}">${s.zh}</div><div class="se">${s.t}</div><p class="sd">${s.d}</p>`;
 
-// Date
-const now = new Date();
-document.getElementById('dateStr').textContent = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-
-// ====== GAUGE ======
-function renderGauge() {
-  const size=280, r=size/2-22, cx=size/2, cy=size/2+10;
-  const startA=Math.PI;
-  const zones = [{s:0,e:0.3,c:"#4A90D9"},{s:0.3,e:0.5,c:"#2ECDA7"},{s:0.5,e:0.7,c:"#F5A623"},{s:0.7,e:0.85,c:"#E8594F"},{s:0.85,e:1,c:"#C0392B"}];
-  const arc=(sA,eA,rad)=>{
-    const x1=cx+rad*Math.cos(sA),y1=cy-rad*Math.sin(sA);
-    const x2=cx+rad*Math.cos(eA),y2=cy-rad*Math.sin(eA);
-    return `M ${x1} ${y1} A ${rad} ${rad} 0 ${sA-eA>Math.PI?1:0} 0 ${x2} ${y2}`;
-  };
-
-  let svg = `<svg width="${size}" height="${size/2+48}" viewBox="0 0 ${size} ${size/2+48}">
-    <defs>
-      ${zones.map((z,i)=>`<linearGradient id="zg${i}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${z.c}" stop-opacity="0.6"/><stop offset="100%" stop-color="${z.c}" stop-opacity="1"/></linearGradient>`).join('')}
-      <filter id="gl"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      <filter id="ns"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.35"/></filter>
-    </defs>
-    <path d="${arc(startA,0,r)}" fill="none" stroke="rgba(128,128,128,0.12)" stroke-width="20" stroke-linecap="round"/>`;
-  zones.forEach((z,i)=>{ svg+=`<path d="${arc(startA-z.s*Math.PI, startA-z.e*Math.PI, r)}" fill="none" stroke="url(#zg${i})" stroke-width="20" stroke-linecap="round"/>`; });
-
-  // Needle (animated via JS)
-  svg += `<line id="needle" x1="${cx}" y1="${cy}" x2="${cx-r+16}" y2="${cy}" stroke="${signal.color}" stroke-width="3.5" stroke-linecap="round" filter="url(#ns)"/>`;
-  svg += `<circle cx="${cx}" cy="${cy}" r="9" fill="${signal.color}" filter="url(#gl)"/>`;
-  svg += `<circle cx="${cx}" cy="${cy}" r="4.5" fill="#fff"/>`;
-  svg += `<text id="scoreText" x="${cx}" y="${cy+32}" text-anchor="middle" font-size="36" font-weight="800" fill="${signal.color}" font-family="'Outfit'">0</text>`;
-  [0,25,50,75,100].forEach(t=>{
-    const a=startA-(t/100)*Math.PI;
-    svg+=`<text x="${cx+(r+15)*Math.cos(a)}" y="${cy-(r+15)*Math.sin(a)}" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="rgba(255,255,255,0.35)" font-family="'DM Sans'">${t}</text>`;
-  });
-  svg += `</svg>`;
-
-  const card = document.getElementById('gaugeCard');
-  card.innerHTML = svg +
-    `<div class="signal-label" style="color:${signal.color}">${signal.zh}</div>
-     <div class="signal-emoji">${signal.text}</div>
-     <p class="signal-desc">${signal.desc}</p>`;
-
-  // Animate needle
-  const needle = document.getElementById('needle');
-  const scoreText = document.getElementById('scoreText');
-  let start = null;
-  const dur = 1800;
-  function anim(ts) {
-    if (!start) start = ts;
-    const p = Math.min((ts-start)/dur, 1);
-    const ease = 1 - Math.pow(1-p, 3);
-    const cur = ease * total;
-    const angle = startA - (cur/100)*Math.PI;
-    const nx = cx + (r-16)*Math.cos(angle);
-    const ny = cy - (r-16)*Math.sin(angle);
-    needle.setAttribute('x2', nx);
-    needle.setAttribute('y2', ny);
-    scoreText.textContent = Math.round(cur);
-    if (p < 1) requestAnimationFrame(anim);
-  }
-  requestAnimationFrame(anim);
+  const ndl=document.getElementById("ndl"),stx=document.getElementById("stx");
+  let st=null;
+  (function an(ts){if(!st)st=ts;const p=Math.min((ts-st)/1600,1),e=1-Math.pow(1-p,3),cur=e*total,a=sA-cur/100*Math.PI;ndl.setAttribute("x2",cx+(r-14)*Math.cos(a));ndl.setAttribute("y2",cy-(r-14)*Math.sin(a));stx.textContent=Math.round(cur);if(p<1)requestAnimationFrame(an)})(performance.now());
 }
 
-// ====== CARDS ======
-function renderCards() {
-  const grid = document.getElementById('cardsGrid');
-  grid.innerHTML = COMPS.map(c => {
-    const d = LIVE[c.key], sc = interp(d.value, c.thresholds);
-    const barW = Math.max(sc, 2);
-    const badgeColor = sc>50?"var(--red)":sc>30?"var(--orange)":"var(--green)";
-    const badgeBg = sc>50?"rgba(232,89,79,0.12)":sc>30?"rgba(245,166,35,0.12)":"rgba(46,205,167,0.12)";
-    return `<div class="data-card">
-      <div class="top-bar" style="width:${barW}%;background:linear-gradient(90deg,${c.color}80,${c.color})"></div>
-      <div class="card-head">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="card-icon" style="background:${c.color}15">${c.icon}</span>
-          <div>
-            <div style="display:flex;align-items:center;gap:6px">
-              <span class="card-letter" style="color:${c.color}">${c.key}</span>
-              <span class="card-zh">${c.zh}</span>
-            </div>
-            <div class="card-desc">${c.desc}</div>
-          </div>
-        </div>
-        <div class="card-val" style="color:${c.color}">${d.raw}</div>
-      </div>
-      <div class="card-detail">${c.detail}</div>
-      <div class="card-foot">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="score-badge" style="color:${badgeColor};background:${badgeBg}">壓力分: ${Math.round(sc)}</span>
-          <span style="font-size:10px;color:var(--dim)">權重 ${c.weight*100}%</span>
-        </div>
-        <span class="card-source">${d.source} · ${d.asOf}</span>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ====== COMPOSITION ======
-function renderComp() {
-  const el = document.getElementById('compCard');
-  const segs = scores.map(s=>{
-    const w = total>0 ? Math.max((s.score*s.weight/total)*100, 2) : 25;
-    return `<div class="comp-seg" style="width:${w}%;background:${s.color}">${w>12?`${s.key} ${Math.round(s.score)}`:''}</div>`;
-  }).join('');
-  const legend = scores.map(s=>`<div style="display:flex;align-items:center;gap:5px;font-size:11px">
-    <div class="comp-dot" style="background:${s.color}"></div>
-    <span style="color:var(--muted)">${s.key} ${s.zh}: <span style="color:${s.color};font-weight:700">${Math.round(s.score)}</span><span style="color:var(--dim);margin-left:2px">×${s.weight*100}%</span></span>
-  </div>`).join('');
-  el.innerHTML = `<div style="font-size:13px;font-weight:700;margin-bottom:10px">📐 壓力組成</div>
-    <div class="comp-bar">${segs}</div><div class="comp-legend">${legend}</div>`;
-}
-
-// ====== ACTION ======
-function renderAction() {
-  let plans = [];
-  if (total>=85) plans=[{i:"💰",t:"分 3-5 批進場，每批 15-25% 資金"},{i:"📊",t:"優先佈局大型權值股 / 寬基指數 ETF"},{i:"🛡️",t:"設定停損但給予較大空間 (-8~12%)"},{i:"📅",t:"持有週期目標：6-18 個月"}];
-  else if (total>=70) plans=[{i:"💰",t:"分 3 批小量進場，每批 10-15% 資金"},{i:"📊",t:"混合佈局：ETF 60% + 優質個股 40%"},{i:"🛡️",t:"設定停損 -5~8%，嚴格執行"},{i:"👀",t:"觀察壓力是否繼續攀升再加碼"}];
-  else if (total>=50) plans=[{i:"💰",t:"僅用 5-10% 資金小量試水"},{i:"📊",t:"以 ETF 為主，避免個股集中風險"},{i:"🛡️",t:"嚴格停損 -3~5%"},{i:"⏳",t:"等待 TACO 指數突破 70 再積極加碼"}];
-  else if (total>=30) plans=[{i:"✋",t:"維持現有部位，不積極加碼"},{i:"📡",t:"持續監控四大指標變化"},{i:"🏦",t:"準備抄底資金，等待壓力升高"}];
-  else plans=[{i:"⚠️",t:"注意市場過熱風險，考慮減碼"},{i:"💵",t:"提高現金部位至 30-50%"},{i:"🎯",t:"獲利了結部分漲多部位"}];
-
-  document.getElementById('actionCard').innerHTML = `<div class="action-card" style="background:${signal.bg};border:1.5px solid ${signal.color}30">
-    <h3 style="font-size:14px;font-weight:700;color:${signal.color};margin-bottom:14px">🎯 當前操作建議</h3>
-    ${plans.map(p=>`<div class="action-item"><span style="font-size:16px">${p.i}</span><span>${p.t}</span></div>`).join('')}
-  </div>`;
-}
-
-// ====== HISTORICAL ======
-function renderHist() {
-  const events=[
-    {y:"2008",n:"金融海嘯",t:95,r:"+68%",i:"🏦"},{y:"2020",n:"COVID 崩盤",t:92,r:"+75%",i:"🦠"},
-    {y:"2011",n:"歐債危機",t:78,r:"+32%",i:"🇪🇺"},{y:"2022",n:"通膨風暴",t:74,r:"+26%",i:"🔥"},
-    {y:"2018",n:"Fed 暴力升息",t:72,r:"+37%",i:"📈"},{y:"2015",n:"人民幣貶值",t:62,r:"+20%",i:"🇨🇳"},
-  ];
-  const closest = events.reduce((a,b)=>Math.abs(b.t-total)<Math.abs(a.t-total)?b:a);
-
-  const el = document.getElementById('histSection');
-  el.innerHTML = `<h3 style="font-size:14px;font-weight:700;margin-bottom:6px">📚 歷史對照</h3>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6">
-      當前 TACO = <b>${Math.round(total)}</b>，最接近 <b style="color:var(--orange)">${closest.y} ${closest.n}</b>（TACO ${closest.t}），底部後一年 S&P 500 報酬 <b style="color:var(--green)">${closest.r}</b>
-    </p>
-    <div class="hist-grid">${events.map(e=>{
-      const isC = e===closest;
-      return `<div class="hist-card" style="background:${isC?'rgba(245,166,35,0.1)':'rgba(255,255,255,0.03)'};border:${isC?'1.5px solid rgba(245,166,35,0.35)':'1px solid rgba(255,255,255,0.06)'}">
-        ${isC?'<div class="hist-closest">最接近</div>':''}
-        <div style="font-size:20px;margin-bottom:4px">${e.i}</div>
-        <div style="font-size:11px;color:var(--muted)">${e.y}</div>
-        <div style="font-size:13px;font-weight:700">${e.n}</div>
-        <div style="font-size:11px;color:var(--red);font-weight:600;margin-top:4px">TACO: ${e.t}</div>
-        <div style="font-size:11px;color:var(--green);font-weight:600">底部後 ${e.r}</div>
-      </div>`;
-    }).join('')}</div>`;
-}
-
-// ====== INIT ======
-renderGauge();
-renderCards();
-renderComp();
-renderAction();
-renderHist();
+init();
 </script>
 </body>
 </html>
