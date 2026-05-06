@@ -1,60 +1,60 @@
 {
-  "taco_score": 18.2,
-  "updated_at": "2026-05-05T03:55:50Z",
+  "taco_score": 17.1,
+  "updated_at": "2026-05-06T04:12:23Z",
   "components": {
     "T": {
       "value": 0.5,
-      "y10": 4.45,
-      "y2": 3.95,
-      "date": "05/04/2026",
+      "y10": 4.43,
+      "y2": 3.93,
+      "date": "05/05/2026",
       "source": "Treasury.gov",
       "score": 40.0,
       "weight": 0.25,
       "display": "+0.50%"
     },
     "A": {
-      "value": 18.29,
-      "date": "2026-05-05",
+      "value": 17.38,
+      "date": "2026-05-06",
       "source": "Yahoo Finance",
-      "score": 16.6,
+      "score": 14.8,
       "weight": 0.3,
-      "display": "18.29"
+      "display": "17.38"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 79.8,
+      "hyg_price": 79.92,
       "hyg_yield": 5.26,
-      "date": "2026-05-05",
+      "date": "2026-05-06",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 15.9,
+      "value": 13.6,
       "components": {
-        "vix_ratio": 0.869,
-        "vix_stress": 17.5,
-        "drawdown_pct": 0.37,
+        "vix_ratio": 0.835,
+        "vix_stress": 14.0,
+        "drawdown_pct": 0.0,
         "drawdown_stress": 5,
-        "spy_current": 718.01,
-        "spy_52w_high": 720.65,
-        "weekly_return": -0.37,
-        "breadth_stress": 28.7,
-        "composite": 15.9
+        "spy_current": 723.77,
+        "spy_52w_high": 723.77,
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 13.6
       },
-      "date": "2026-05-05",
+      "date": "2026-05-06",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 15.9,
+      "score": 13.6,
       "weight": 0.2,
-      "display": "15.9/100"
+      "display": "13.6/100"
     }
   },
   "scores": {
     "T": 40.0,
-    "A": 16.6,
+    "A": 14.8,
     "C": 0,
-    "O": 15.9
+    "O": 13.6
   },
   "signal": {
     "level": "cool",
