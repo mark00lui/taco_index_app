@@ -1,60 +1,60 @@
 {
   "taco_score": 16.1,
-  "updated_at": "2026-05-29T17:47:18Z",
+  "updated_at": "2026-05-30T04:33:30Z",
   "components": {
     "T": {
-      "value": 0.46,
+      "value": 0.47,
       "y10": 4.45,
-      "y2": 3.99,
-      "date": "05/28/2026",
+      "y2": 3.98,
+      "date": "05/29/2026",
       "source": "Treasury.gov",
-      "score": 41.6,
+      "score": 41.2,
       "weight": 0.25,
-      "display": "+0.46%"
+      "display": "+0.47%"
     },
     "A": {
-      "value": 15.27,
-      "date": "2026-05-29",
+      "value": 15.32,
+      "date": "2026-05-30",
       "source": "Yahoo Finance",
-      "score": 10.5,
+      "score": 10.6,
       "weight": 0.3,
-      "display": "15.27"
+      "display": "15.32"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 80.33,
+      "hyg_price": 80.31,
       "hyg_yield": 5.23,
-      "date": "2026-05-29",
+      "date": "2026-05-30",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 12.7,
+      "value": 13.2,
       "components": {
-        "vix_ratio": 0.817,
-        "vix_stress": 12.8,
+        "vix_ratio": 0.821,
+        "vix_stress": 13.1,
         "drawdown_pct": 0.0,
         "drawdown_stress": 5,
-        "spy_current": 756.11,
-        "spy_52w_high": 756.11,
-        "weekly_return": 0.2,
-        "breadth_stress": 23.5,
-        "composite": 12.7
+        "spy_current": 756.48,
+        "spy_52w_high": 756.48,
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 13.2
       },
-      "date": "2026-05-29",
+      "date": "2026-05-30",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 12.7,
+      "score": 13.2,
       "weight": 0.2,
-      "display": "12.7/100"
+      "display": "13.2/100"
     }
   },
   "scores": {
-    "T": 41.6,
-    "A": 10.5,
+    "T": 41.2,
+    "A": 10.6,
     "C": 0,
-    "O": 12.7
+    "O": 13.2
   },
   "signal": {
     "level": "cool",
