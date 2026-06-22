@@ -1,6 +1,6 @@
 {
   "taco_score": 19.2,
-  "updated_at": "2026-06-20T15:56:49Z",
+  "updated_at": "2026-06-22T05:40:34Z",
   "components": {
     "T": {
       "value": 0.27,
@@ -14,7 +14,7 @@
     },
     "A": {
       "value": 16.78,
-      "date": "2026-06-20",
+      "date": "2026-06-22",
       "source": "Yahoo Finance",
       "score": 13.6,
       "weight": 0.3,
@@ -24,7 +24,7 @@
       "value": 1.0,
       "hyg_price": 80.01,
       "hyg_yield": 5.25,
-      "date": "2026-06-20",
+      "date": "2026-06-22",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
@@ -43,7 +43,7 @@
         "breadth_stress": 25.0,
         "composite": 14.4
       },
-      "date": "2026-06-20",
+      "date": "2026-06-22",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
       "score": 14.4,
       "weight": 0.2,
