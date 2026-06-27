@@ -1,60 +1,60 @@
 {
-  "taco_score": 21.6,
-  "updated_at": "2026-06-26T16:30:28Z",
+  "taco_score": 21.1,
+  "updated_at": "2026-06-27T04:33:51Z",
   "components": {
     "T": {
       "value": 0.31,
-      "y10": 4.4,
-      "y2": 4.09,
-      "date": "06/25/2026",
+      "y10": 4.38,
+      "y2": 4.07,
+      "date": "06/26/2026",
       "source": "Treasury.gov",
       "score": 47.6,
       "weight": 0.25,
       "display": "+0.31%"
     },
     "A": {
-      "value": 19.12,
-      "date": "2026-06-26",
+      "value": 18.41,
+      "date": "2026-06-27",
       "source": "Yahoo Finance",
-      "score": 18.2,
+      "score": 16.8,
       "weight": 0.3,
-      "display": "19.12"
+      "display": "18.41"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 79.88,
+      "hyg_price": 79.83,
       "hyg_yield": 5.26,
-      "date": "2026-06-26",
+      "date": "2026-06-27",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 21.1,
+      "value": 21.0,
       "components": {
-        "vix_ratio": 0.933,
-        "vix_stress": 26.0,
-        "drawdown_pct": 3.42,
-        "drawdown_stress": 12.1,
-        "spy_current": 733.62,
+        "vix_ratio": 0.915,
+        "vix_stress": 23.6,
+        "drawdown_pct": 4.03,
+        "drawdown_stress": 15.1,
+        "spy_current": 728.99,
         "spy_52w_high": 759.57,
-        "weekly_return": -0.09,
-        "breadth_stress": 25.9,
-        "composite": 21.1
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 21.0
       },
-      "date": "2026-06-26",
+      "date": "2026-06-27",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 21.1,
+      "score": 21.0,
       "weight": 0.2,
-      "display": "21.1/100"
+      "display": "21.0/100"
     }
   },
   "scores": {
     "T": 47.6,
-    "A": 18.2,
+    "A": 16.8,
     "C": 0,
-    "O": 21.1
+    "O": 21.0
   },
   "signal": {
     "level": "cool",
