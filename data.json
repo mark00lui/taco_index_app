@@ -1,60 +1,60 @@
 {
-  "taco_score": 19.8,
-  "updated_at": "2026-07-28T16:16:39Z",
+  "taco_score": 20.0,
+  "updated_at": "2026-07-29T03:48:43Z",
   "components": {
     "T": {
-      "value": 0.34,
-      "y10": 4.65,
-      "y2": 4.31,
-      "date": "07/27/2026",
+      "value": 0.35,
+      "y10": 4.61,
+      "y2": 4.26,
+      "date": "07/28/2026",
       "source": "Treasury.gov",
-      "score": 46.4,
+      "score": 46.0,
       "weight": 0.25,
-      "display": "+0.34%"
+      "display": "+0.35%"
     },
     "A": {
-      "value": 17.96,
-      "date": "2026-07-28",
+      "value": 18.21,
+      "date": "2026-07-29",
       "source": "Yahoo Finance",
-      "score": 15.9,
+      "score": 16.4,
       "weight": 0.3,
-      "display": "17.96"
+      "display": "18.21"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 79.39,
+      "hyg_price": 79.42,
       "hyg_yield": 5.29,
-      "date": "2026-07-28",
+      "date": "2026-07-29",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 17.2,
+      "value": 17.9,
       "components": {
-        "vix_ratio": 0.908,
-        "vix_stress": 22.7,
-        "drawdown_pct": 2.38,
-        "drawdown_stress": 6.9,
-        "spy_current": 741.46,
+        "vix_ratio": 0.917,
+        "vix_stress": 23.9,
+        "drawdown_pct": 2.46,
+        "drawdown_stress": 7.3,
+        "spy_current": 740.86,
         "spy_52w_high": 759.57,
-        "weekly_return": 0.32,
-        "breadth_stress": 22.6,
-        "composite": 17.2
+        "weekly_return": 0.24,
+        "breadth_stress": 23.2,
+        "composite": 17.9
       },
-      "date": "2026-07-28",
+      "date": "2026-07-29",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 17.2,
+      "score": 17.9,
       "weight": 0.2,
-      "display": "17.2/100"
+      "display": "17.9/100"
     }
   },
   "scores": {
-    "T": 46.4,
-    "A": 15.9,
+    "T": 46.0,
+    "A": 16.4,
     "C": 0,
-    "O": 17.2
+    "O": 17.9
   },
   "signal": {
     "level": "cool",
