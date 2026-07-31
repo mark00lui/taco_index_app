@@ -1,60 +1,60 @@
 {
-  "taco_score": 19.0,
-  "updated_at": "2026-07-30T16:04:01Z",
+  "taco_score": 18.0,
+  "updated_at": "2026-07-31T03:59:10Z",
   "components": {
     "T": {
       "value": 0.45,
-      "y10": 4.67,
-      "y2": 4.22,
-      "date": "07/29/2026",
+      "y10": 4.68,
+      "y2": 4.23,
+      "date": "07/30/2026",
       "source": "Treasury.gov",
       "score": 42.0,
       "weight": 0.25,
       "display": "+0.45%"
     },
     "A": {
-      "value": 18.56,
-      "date": "2026-07-30",
+      "value": 17.09,
+      "date": "2026-07-31",
       "source": "Yahoo Finance",
-      "score": 17.1,
+      "score": 14.2,
       "weight": 0.3,
-      "display": "18.56"
+      "display": "17.09"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 79.45,
+      "hyg_price": 79.47,
       "hyg_yield": 5.29,
-      "date": "2026-07-30",
+      "date": "2026-07-31",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 16.9,
+      "value": 16.0,
       "components": {
-        "vix_ratio": 0.916,
-        "vix_stress": 23.8,
-        "drawdown_pct": 2.87,
-        "drawdown_stress": 9.4,
-        "spy_current": 737.77,
+        "vix_ratio": 0.876,
+        "vix_stress": 18.5,
+        "drawdown_pct": 2.35,
+        "drawdown_stress": 6.8,
+        "spy_current": 741.69,
         "spy_52w_high": 759.57,
-        "weekly_return": 1.14,
-        "breadth_stress": 16.4,
-        "composite": 16.9
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 16.0
       },
-      "date": "2026-07-30",
+      "date": "2026-07-31",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 16.9,
+      "score": 16.0,
       "weight": 0.2,
-      "display": "16.9/100"
+      "display": "16.0/100"
     }
   },
   "scores": {
     "T": 42.0,
-    "A": 17.1,
+    "A": 14.2,
     "C": 0,
-    "O": 16.9
+    "O": 16.0
   },
   "signal": {
     "level": "cool",
