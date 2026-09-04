@@ -1,60 +1,60 @@
 {
   "taco_score": 16.0,
-  "updated_at": "2026-09-03T17:55:31Z",
+  "updated_at": "2026-09-04T04:54:26Z",
   "components": {
     "T": {
-      "value": 0.4,
-      "y10": 4.79,
-      "y2": 4.39,
-      "date": "09/02/2026",
+      "value": 0.43,
+      "y10": 4.77,
+      "y2": 4.34,
+      "date": "09/03/2026",
       "source": "Treasury.gov",
-      "score": 44.0,
+      "score": 42.8,
       "weight": 0.25,
-      "display": "+0.40%"
+      "display": "+0.43%"
     },
     "A": {
-      "value": 14.52,
-      "date": "2026-09-03",
+      "value": 14.32,
+      "date": "2026-09-04",
       "source": "Yahoo Finance",
-      "score": 9.0,
+      "score": 8.6,
       "weight": 0.3,
-      "display": "14.52"
+      "display": "14.32"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 79.25,
+      "hyg_price": 79.21,
       "hyg_yield": 5.3,
-      "date": "2026-09-03",
+      "date": "2026-09-04",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 11.4,
+      "value": 13.3,
       "components": {
-        "vix_ratio": 0.828,
-        "vix_stress": 13.6,
-        "drawdown_pct": 0.58,
+        "vix_ratio": 0.822,
+        "vix_stress": 13.1,
+        "drawdown_pct": 0.61,
         "drawdown_stress": 5,
-        "spy_current": 773.4,
+        "spy_current": 773.17,
         "spy_52w_high": 777.88,
-        "weekly_return": 1.08,
-        "breadth_stress": 16.9,
-        "composite": 11.4
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 13.3
       },
-      "date": "2026-09-03",
+      "date": "2026-09-04",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 11.4,
+      "score": 13.3,
       "weight": 0.2,
-      "display": "11.4/100"
+      "display": "13.3/100"
     }
   },
   "scores": {
-    "T": 44.0,
-    "A": 9.0,
+    "T": 42.8,
+    "A": 8.6,
     "C": 0,
-    "O": 11.4
+    "O": 13.3
   },
   "signal": {
     "level": "cool",
