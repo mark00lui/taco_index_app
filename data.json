@@ -1,60 +1,60 @@
 {
   "taco_score": 16.0,
-  "updated_at": "2026-10-06T19:36:49Z",
+  "updated_at": "2026-10-07T06:17:22Z",
   "components": {
     "T": {
-      "value": 0.47,
-      "y10": 5.31,
-      "y2": 4.84,
-      "date": "10/05/2026",
+      "value": 0.48,
+      "y10": 5.27,
+      "y2": 4.79,
+      "date": "10/06/2026",
       "source": "Treasury.gov",
-      "score": 41.2,
+      "score": 40.8,
       "weight": 0.25,
-      "display": "+0.47%"
+      "display": "+0.48%"
     },
     "A": {
-      "value": 15.06,
-      "date": "2026-10-06",
+      "value": 15.01,
+      "date": "2026-10-07",
       "source": "Yahoo Finance",
-      "score": 10.1,
+      "score": 10.0,
       "weight": 0.3,
-      "display": "15.06"
+      "display": "15.01"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 77.28,
+      "hyg_price": 77.27,
       "hyg_yield": 5.44,
-      "date": "2026-10-06",
+      "date": "2026-10-07",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 13.1,
+      "value": 14.0,
       "components": {
-        "vix_ratio": 0.854,
-        "vix_stress": 15.5,
+        "vix_ratio": 0.851,
+        "vix_stress": 15.1,
         "drawdown_pct": 0.0,
         "drawdown_stress": 5,
-        "spy_current": 779.57,
-        "spy_52w_high": 779.57,
-        "weekly_return": 0.61,
-        "breadth_stress": 20.4,
-        "composite": 13.1
+        "spy_current": 779.09,
+        "spy_52w_high": 779.09,
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 14.0
       },
-      "date": "2026-10-06",
+      "date": "2026-10-07",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 13.1,
+      "score": 14.0,
       "weight": 0.2,
-      "display": "13.1/100"
+      "display": "14.0/100"
     }
   },
   "scores": {
-    "T": 41.2,
-    "A": 10.1,
+    "T": 40.8,
+    "A": 10.0,
     "C": 0,
-    "O": 13.1
+    "O": 14.0
   },
   "signal": {
     "level": "cool",
