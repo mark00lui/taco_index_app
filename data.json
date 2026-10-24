@@ -1,60 +1,60 @@
 {
-  "taco_score": 22.2,
-  "updated_at": "2026-10-23T18:31:57Z",
+  "taco_score": 21.6,
+  "updated_at": "2026-10-24T04:53:13Z",
   "components": {
     "T": {
       "value": 0.31,
-      "y10": 4.96,
-      "y2": 4.65,
-      "date": "10/22/2026",
+      "y10": 5.0,
+      "y2": 4.69,
+      "date": "10/23/2026",
       "source": "Treasury.gov",
       "score": 47.6,
       "weight": 0.25,
       "display": "+0.31%"
     },
     "A": {
-      "value": 19.91,
-      "date": "2026-10-23",
+      "value": 19.45,
+      "date": "2026-10-24",
       "source": "Yahoo Finance",
-      "score": 19.8,
+      "score": 18.9,
       "weight": 0.3,
-      "display": "19.91"
+      "display": "19.45"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 77.03,
+      "hyg_price": 77.05,
       "hyg_yield": 5.45,
-      "date": "2026-10-23",
+      "date": "2026-10-24",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 21.6,
+      "value": 20.1,
       "components": {
-        "vix_ratio": 0.961,
-        "vix_stress": 29.8,
-        "drawdown_pct": 2.35,
-        "drawdown_stress": 6.7,
-        "spy_current": 760.81,
+        "vix_ratio": 0.95,
+        "vix_stress": 28.3,
+        "drawdown_pct": 2.45,
+        "drawdown_stress": 7.3,
+        "spy_current": 759.97,
         "spy_52w_high": 779.09,
-        "weekly_return": -0.41,
-        "breadth_stress": 29.1,
-        "composite": 21.6
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 20.1
       },
-      "date": "2026-10-23",
+      "date": "2026-10-24",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 21.6,
+      "score": 20.1,
       "weight": 0.2,
-      "display": "21.6/100"
+      "display": "20.1/100"
     }
   },
   "scores": {
     "T": 47.6,
-    "A": 19.8,
+    "A": 18.9,
     "C": 0,
-    "O": 21.6
+    "O": 20.1
   },
   "signal": {
     "level": "cool",
