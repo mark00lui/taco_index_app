@@ -1,29 +1,29 @@
 {
-  "taco_score": 21.6,
-  "updated_at": "2026-10-26T05:07:50Z",
+  "taco_score": 20.1,
+  "updated_at": "2026-10-26T20:01:27Z",
   "components": {
     "T": {
-      "value": 0.31,
+      "value": 0.32,
       "y10": 5.0,
-      "y2": 4.69,
-      "date": "10/23/2026",
+      "y2": 4.68,
+      "date": "10/26/2026",
       "source": "Treasury.gov",
-      "score": 47.6,
+      "score": 47.2,
       "weight": 0.25,
-      "display": "+0.31%"
+      "display": "+0.32%"
     },
     "A": {
-      "value": 19.45,
+      "value": 18.32,
       "date": "2026-10-26",
       "source": "Yahoo Finance",
-      "score": 18.9,
+      "score": 16.6,
       "weight": 0.3,
-      "display": "19.45"
+      "display": "18.32"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 77.05,
-      "hyg_yield": 5.45,
+      "hyg_price": 77.18,
+      "hyg_yield": 5.44,
       "date": "2026-10-26",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
@@ -31,30 +31,30 @@
       "display": "1.00%"
     },
     "O": {
-      "value": 20.1,
+      "value": 16.5,
       "components": {
-        "vix_ratio": 0.95,
-        "vix_stress": 28.3,
-        "drawdown_pct": 2.45,
-        "drawdown_stress": 7.3,
-        "spy_current": 759.97,
+        "vix_ratio": 0.921,
+        "vix_stress": 24.5,
+        "drawdown_pct": 1.77,
+        "drawdown_stress": 5,
+        "spy_current": 765.29,
         "spy_52w_high": 779.09,
-        "weekly_return": 0.0,
-        "breadth_stress": 25.0,
-        "composite": 20.1
+        "weekly_return": 0.7,
+        "breadth_stress": 19.7,
+        "composite": 16.5
       },
       "date": "2026-10-26",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 20.1,
+      "score": 16.5,
       "weight": 0.2,
-      "display": "20.1/100"
+      "display": "16.5/100"
     }
   },
   "scores": {
-    "T": 47.6,
-    "A": 18.9,
+    "T": 47.2,
+    "A": 16.6,
     "C": 0,
-    "O": 20.1
+    "O": 16.5
   },
   "signal": {
     "level": "cool",
