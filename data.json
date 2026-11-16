@@ -1,29 +1,29 @@
 {
-  "taco_score": 22.0,
-  "updated_at": "2026-11-16T07:01:44Z",
+  "taco_score": 27.1,
+  "updated_at": "2026-11-16T23:26:44Z",
   "components": {
     "T": {
-      "value": 0.27,
-      "y10": 5.15,
-      "y2": 4.88,
-      "date": "11/13/2026",
+      "value": 0.29,
+      "y10": 5.12,
+      "y2": 4.83,
+      "date": "11/16/2026",
       "source": "Treasury.gov",
-      "score": 49.2,
+      "score": 48.4,
       "weight": 0.25,
-      "display": "+0.27%"
+      "display": "+0.29%"
     },
     "A": {
-      "value": 19.3,
+      "value": 22.91,
       "date": "2026-11-16",
       "source": "Yahoo Finance",
-      "score": 18.6,
+      "score": 28.7,
       "weight": 0.3,
-      "display": "19.30"
+      "display": "22.91"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 76.94,
-      "hyg_yield": 5.46,
+      "hyg_price": 76.73,
+      "hyg_yield": 5.47,
       "date": "2026-11-16",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
@@ -31,30 +31,30 @@
       "display": "1.00%"
     },
     "O": {
-      "value": 20.6,
+      "value": 31.8,
       "components": {
-        "vix_ratio": 0.936,
-        "vix_stress": 26.5,
-        "drawdown_pct": 3.17,
-        "drawdown_stress": 10.9,
-        "spy_current": 754.37,
+        "vix_ratio": 0.995,
+        "vix_stress": 34.4,
+        "drawdown_pct": 5.02,
+        "drawdown_stress": 20.1,
+        "spy_current": 739.95,
         "spy_52w_high": 779.09,
-        "weekly_return": 0.0,
-        "breadth_stress": 25.0,
-        "composite": 20.6
+        "weekly_return": -1.91,
+        "breadth_stress": 44.1,
+        "composite": 31.8
       },
       "date": "2026-11-16",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 20.6,
+      "score": 31.8,
       "weight": 0.2,
-      "display": "20.6/100"
+      "display": "31.8/100"
     }
   },
   "scores": {
-    "T": 49.2,
-    "A": 18.6,
+    "T": 48.4,
+    "A": 28.7,
     "C": 0,
-    "O": 20.6
+    "O": 31.8
   },
   "signal": {
     "level": "cool",
