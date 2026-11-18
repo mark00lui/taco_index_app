@@ -1,6 +1,6 @@
 {
-  "taco_score": 29.5,
-  "updated_at": "2026-11-17T22:30:28Z",
+  "taco_score": 29.0,
+  "updated_at": "2026-11-18T07:48:59Z",
   "components": {
     "T": {
       "value": 0.3,
@@ -14,7 +14,7 @@
     },
     "A": {
       "value": 25.46,
-      "date": "2026-11-17",
+      "date": "2026-11-18",
       "source": "Yahoo Finance",
       "score": 36.4,
       "weight": 0.3,
@@ -24,14 +24,14 @@
       "value": 1.0,
       "hyg_price": 76.63,
       "hyg_yield": 5.48,
-      "date": "2026-11-17",
+      "date": "2026-11-18",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
       "weight": 0.25,
       "display": "1.00%"
     },
     "O": {
-      "value": 32.7,
+      "value": 30.2,
       "components": {
         "vix_ratio": 1.019,
         "vix_stress": 38.8,
@@ -39,22 +39,22 @@
         "drawdown_stress": 24.0,
         "spy_current": 732.44,
         "spy_52w_high": 779.09,
-        "weekly_return": -1.01,
-        "breadth_stress": 35.1,
-        "composite": 32.7
+        "weekly_return": 0.0,
+        "breadth_stress": 25.0,
+        "composite": 30.2
       },
-      "date": "2026-11-17",
+      "date": "2026-11-18",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 32.7,
+      "score": 30.2,
       "weight": 0.2,
-      "display": "32.7/100"
+      "display": "30.2/100"
     }
   },
   "scores": {
     "T": 48.0,
     "A": 36.4,
     "C": 0,
-    "O": 32.7
+    "O": 30.2
   },
   "signal": {
     "level": "cool",
