@@ -1,29 +1,29 @@
 {
-  "taco_score": 28.4,
-  "updated_at": "2026-11-19T07:44:52Z",
+  "taco_score": 33.9,
+  "updated_at": "2026-11-19T22:19:39Z",
   "components": {
     "T": {
-      "value": 0.27,
-      "y10": 5.07,
-      "y2": 4.8,
-      "date": "11/18/2026",
+      "value": 0.28,
+      "y10": 5.04,
+      "y2": 4.76,
+      "date": "11/19/2026",
       "source": "Treasury.gov",
-      "score": 49.2,
+      "score": 48.8,
       "weight": 0.25,
-      "display": "+0.27%"
+      "display": "+0.28%"
     },
     "A": {
-      "value": 24.56,
+      "value": 28.44,
       "date": "2026-11-19",
       "source": "Yahoo Finance",
-      "score": 33.7,
+      "score": 45.3,
       "weight": 0.3,
-      "display": "24.56"
+      "display": "28.44"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 76.65,
-      "hyg_yield": 5.48,
+      "hyg_price": 76.53,
+      "hyg_yield": 5.49,
       "date": "2026-11-19",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
@@ -31,34 +31,34 @@
       "display": "1.00%"
     },
     "O": {
-      "value": 29.9,
+      "value": 40.7,
       "components": {
-        "vix_ratio": 1.011,
-        "vix_stress": 37.2,
-        "drawdown_pct": 6.28,
-        "drawdown_stress": 25.1,
-        "spy_current": 730.2,
+        "vix_ratio": 1.052,
+        "vix_stress": 45.4,
+        "drawdown_pct": 8.11,
+        "drawdown_stress": 32.5,
+        "spy_current": 715.87,
         "spy_52w_high": 779.09,
-        "weekly_return": 0.0,
-        "breadth_stress": 25.0,
-        "composite": 29.9
+        "weekly_return": -1.96,
+        "breadth_stress": 44.6,
+        "composite": 40.7
       },
       "date": "2026-11-19",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 29.9,
+      "score": 40.7,
       "weight": 0.2,
-      "display": "29.9/100"
+      "display": "40.7/100"
     }
   },
   "scores": {
-    "T": 49.2,
-    "A": 33.7,
+    "T": 48.8,
+    "A": 45.3,
     "C": 0,
-    "O": 29.9
+    "O": 40.7
   },
   "signal": {
-    "level": "cool",
-    "zh": "TACO 冰鎮模式",
-    "action": "市場過熱"
+    "level": "low",
+    "zh": "TACO 原味模式",
+    "action": "中性偏空"
   }
 }
