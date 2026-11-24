@@ -1,29 +1,29 @@
 {
-  "taco_score": 31.5,
-  "updated_at": "2026-11-24T10:13:41Z",
+  "taco_score": 30.9,
+  "updated_at": "2026-11-24T23:33:19Z",
   "components": {
     "T": {
-      "value": 0.29,
-      "y10": 4.92,
+      "value": 0.28,
+      "y10": 4.91,
       "y2": 4.63,
-      "date": "11/23/2026",
+      "date": "11/24/2026",
       "source": "Treasury.gov",
-      "score": 48.4,
+      "score": 48.8,
       "weight": 0.25,
-      "display": "+0.29%"
+      "display": "+0.28%"
     },
     "A": {
-      "value": 27.72,
+      "value": 26.36,
       "date": "2026-11-24",
       "source": "Yahoo Finance",
-      "score": 43.2,
+      "score": 39.1,
       "weight": 0.3,
-      "display": "27.72"
+      "display": "26.36"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 76.52,
-      "hyg_yield": 5.49,
+      "hyg_price": 76.43,
+      "hyg_yield": 5.5,
       "date": "2026-11-24",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
@@ -31,30 +31,30 @@
       "display": "1.00%"
     },
     "O": {
-      "value": 32.4,
+      "value": 35.1,
       "components": {
-        "vix_ratio": 1.087,
-        "vix_stress": 52.4,
-        "drawdown_pct": 7.29,
-        "drawdown_stress": 29.2,
-        "spy_current": 722.29,
+        "vix_ratio": 1.035,
+        "vix_stress": 42.0,
+        "drawdown_pct": 7.74,
+        "drawdown_stress": 31.0,
+        "spy_current": 718.78,
         "spy_52w_high": 779.09,
-        "weekly_return": 4.71,
-        "breadth_stress": 5,
-        "composite": 32.4
+        "weekly_return": -0.49,
+        "breadth_stress": 29.9,
+        "composite": 35.1
       },
       "date": "2026-11-24",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 32.4,
+      "score": 35.1,
       "weight": 0.2,
-      "display": "32.4/100"
+      "display": "35.1/100"
     }
   },
   "scores": {
-    "T": 48.4,
-    "A": 43.2,
+    "T": 48.8,
+    "A": 39.1,
     "C": 0,
-    "O": 32.4
+    "O": 35.1
   },
   "signal": {
     "level": "low",
