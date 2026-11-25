@@ -1,29 +1,29 @@
 {
-  "taco_score": 32.8,
-  "updated_at": "2026-11-25T08:57:44Z",
+  "taco_score": 33.7,
+  "updated_at": "2026-11-25T23:10:53Z",
   "components": {
     "T": {
-      "value": 0.28,
-      "y10": 4.91,
-      "y2": 4.63,
-      "date": "11/24/2026",
+      "value": 0.24,
+      "y10": 4.85,
+      "y2": 4.61,
+      "date": "11/25/2026",
       "source": "Treasury.gov",
-      "score": 48.8,
+      "score": 50.4,
       "weight": 0.25,
-      "display": "+0.28%"
+      "display": "+0.24%"
     },
     "A": {
-      "value": 27.72,
+      "value": 28.29,
       "date": "2026-11-25",
       "source": "Yahoo Finance",
-      "score": 43.2,
+      "score": 44.9,
       "weight": 0.3,
-      "display": "27.72"
+      "display": "28.29"
     },
     "C": {
       "value": 1.0,
-      "hyg_price": 76.43,
-      "hyg_yield": 5.5,
+      "hyg_price": 76.52,
+      "hyg_yield": 5.49,
       "date": "2026-11-25",
       "source": "Yahoo Finance (HYG proxy)",
       "score": 0,
@@ -31,30 +31,30 @@
       "display": "1.00%"
     },
     "O": {
-      "value": 38.2,
+      "value": 38.3,
       "components": {
-        "vix_ratio": 1.088,
-        "vix_stress": 52.7,
-        "drawdown_pct": 7.74,
-        "drawdown_stress": 31.0,
-        "spy_current": 718.78,
+        "vix_ratio": 1.076,
+        "vix_stress": 50.2,
+        "drawdown_pct": 8.01,
+        "drawdown_stress": 32.0,
+        "spy_current": 716.7,
         "spy_52w_high": 779.09,
-        "weekly_return": 0.0,
-        "breadth_stress": 25.0,
-        "composite": 38.2
+        "weekly_return": -0.29,
+        "breadth_stress": 27.9,
+        "composite": 38.3
       },
       "date": "2026-11-25",
       "source": "Composite (VIX term structure + SPY drawdown + breadth)",
-      "score": 38.2,
+      "score": 38.3,
       "weight": 0.2,
-      "display": "38.2/100"
+      "display": "38.3/100"
     }
   },
   "scores": {
-    "T": 48.8,
-    "A": 43.2,
+    "T": 50.4,
+    "A": 44.9,
     "C": 0,
-    "O": 38.2
+    "O": 38.3
   },
   "signal": {
     "level": "low",
